@@ -3,6 +3,7 @@ using DevStudyNotes.API.Models;
 using DevStudyNotes.API.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 namespace DevStudyNotes.API.Controllers
 {
@@ -17,10 +18,19 @@ namespace DevStudyNotes.API.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Get All Study Notes
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetAll()
         {
-            var studyNotes = _context.StudyNotes.ToList();   
+
+            var studyNotes = _context.StudyNotes.ToList();
+
+            Log.Information("GetAll is called.");
+
+            throw new Exception("Get all threw an error.");
 
             return Ok(studyNotes);
         }
